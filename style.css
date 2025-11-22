@@ -126,8 +126,8 @@ h1::after {
     transition: color 0.45s ease;
 }
 
-.arrow.left { left: 6px; }
-.arrow.right { right: 6px; }
+.arrow.left { left: 8px; }
+.arrow.right { right: 8px; }
 
 .arrow:hover {
     color: #FFE6F5;
@@ -234,11 +234,11 @@ footer {
     }
 
     .slider {
-        padding: 0 20px;
+        padding: 16px 20px 0 20px; /* ← 修正点（上に16px追加） */
     }
 
     .slider img {
-        height: 180px;
+        height: 150px;
     }
 
     .arrow.left  { left: -12px; }
@@ -246,7 +246,7 @@ footer {
 
     .icons {
         margin-top: 10px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
     }
 }
 
@@ -259,7 +259,7 @@ footer {
     .icons::after { width: 280px; }
 
     .slider {
-        padding-top: 6px; /* 余白を自然に */
+        padding-top: 16px; /* 余白を自然に */
         padding-left: 40px;
         padding-right: 40px;
     }
