@@ -19,7 +19,7 @@ body {
 
 .title-link:hover {
     color: #FFE6F5;
-    transform: scale(1.08);
+    transform: scale(1.02);
 }
 
 .bg_pattern {
@@ -117,37 +117,89 @@ h1:after {
     justify-content: center;
     align-items: center;
     z-index: 3;
+
     transition: color 0.45s ease, transform 0.45s ease;
 }
 
-.arrow.left { left: 8px; }
-.arrow.right { right: 8px; }
+.arrow.left {
+    left: 8px;
+}
+.arrow.right {
+    right: 8px;
+}
 
 .arrow:hover {
     color: #FFE6F5;
     transform: translateY(-50%) scale(1.1);
 }
 
+/* SNS アイコン全体 */
 .icons {
-    margin: 24px auto 22px;
+    margin: 24px auto 40px;
     display: flex;
     justify-content: center;
     gap: 36px;
     flex-wrap: wrap;
+    position: relative;
+    padding-bottom: 32px;
 }
 
-.icons img {
+/* SNS アイコン（紫 → ピンク の2枚重ね） */
+.icon-switch {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    display: inline-block;
+}
+
+.icon-switch img {
+    position: absolute;
+    inset: 0;
     width: 42px;
     height: 42px;
     object-fit: contain;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
-.icons img:hover {
-    transform: translateY(-2px) scale(1.08);
-    opacity: 0.9;
+.icon-normal {
+    opacity: 1;
 }
 
+.icon-hover {
+    opacity: 0;
+}
+
+.icon-switch:hover .icon-normal {
+    opacity: 0;
+    transform: scale(1.1);
+}
+
+.icon-switch:hover .icon-hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* SNS アイコン下のライン（タイトルと完全一致） */
+.icons::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 12px; 
+    background: repeating-linear-gradient(
+        -45deg,
+        #FFE6F5,
+        #FFE6F5 2px,
+        #fff 2px,
+        #fff 4px
+    );
+    border-radius: 3px;
+}
+
+/* Thanks テキスト */
 .thanks-message {
     margin-bottom: 40px;
     font-size: 16px;
@@ -155,6 +207,7 @@ h1:after {
     opacity: 0.9;
 }
 
+/* フッター */
 footer {
     margin-top: 10px;
     padding: 20px 0;
@@ -180,31 +233,48 @@ footer {
     transition: opacity 0.3s ease;
 }
 
-.fade { opacity: 0; }
-.show { opacity: 1; }
+.fade {
+    opacity: 0;
+}
+.show {
+    opacity: 1;
+}
 
 /* Tablet */
 @media (max-width: 820px) {
-    h1:after { width: 65%; }
+    h1:after {
+        width: 65%;
+    }
 }
 
 /* Smartphone */
 @media (max-width: 480px) {
-    .subtitle { margin-bottom: 4px; }
-    .icons { margin-top: 6px; }
+    .subtitle {
+        margin-bottom: 4px;
+    }
+
+    .icons {
+        margin-top: 6px;
+    }
 
     .slider {
         margin: 0 !important;
         padding: 0 40px;
     }
 
-    .arrow.left { left: 0; }
-    .arrow.right { right: 0; }
+    .arrow.left {
+        left: 0;
+    }
+    .arrow.right {
+        right: 0;
+    }
 
-    .slider img { height: 220px; }
+    .slider img {
+        height: 220px;
+    }
 }
 
-/* PC版の subtitle と slider の間を広げる */
+/* PC（subtitle と slider の間を少し広げる） */
 @media (min-width: 600px) {
     .slider {
         padding-top: 16px !important;
