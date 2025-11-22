@@ -37,21 +37,24 @@ window.addEventListener("load", () => {
     imgElement.classList.add("show");
 });
 
-const FADE_TIME = 300;
-
-// スライド表示
+// スライド表示（チラ見え防止版）
 function showImage() {
+    // ① まず透明にして完全非表示へ
     imgElement.classList.remove("show");
 
-    setTimeout(() => {
+    // ② ブラウザの描画タイミングと同期して src を変更
+    requestAnimationFrame(() => {
         imgElement.src = images[index];
 
         if (modal.style.display === "flex") {
             modalImg.src = images[index];
         }
 
-        imgElement.classList.add("show");
-    }, FADE_TIME);
+        // ③ 微小遅延でフェードインを開始（スマホで安定）
+        setTimeout(() => {
+            imgElement.classList.add("show");
+        }, 20);
+    });
 }
 
 function nextImage() {
@@ -70,6 +73,7 @@ function openModal() {
     modalImg.src = images[index];
 
     modalImg.classList.remove("show");
+
     setTimeout(() => {
         modalImg.classList.add("show");
     }, 10);
@@ -81,5 +85,5 @@ function closeModal() {
 
     setTimeout(() => {
         modal.style.display = "none";
-    }, FADE_TIME);
+    }, 300);
 }
