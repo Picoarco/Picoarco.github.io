@@ -135,7 +135,7 @@ h1:after {
 
 /* SNS アイコン全体 */
 .icons {
-    margin: 24px auto 40px;
+    margin: 24px auto 18px; /* ← PC・スマホ共通：18px に統一 */
     display: flex;
     justify-content: center;
     gap: 36px;
@@ -260,7 +260,7 @@ footer {
 
     .icons {
         margin-top: 6px;
-        margin-bottom: 28px; /* ← Thanks との距離を短くする */
+        margin-bottom: 18px; /* ← スマホも 18px に統一 */
     }
 
     .slider {
