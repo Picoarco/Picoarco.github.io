@@ -144,20 +144,23 @@ h1:after {
     padding-bottom: 32px;
 }
 
-/* アイコンの hover アニメーション（矢印と同じ） */
+/* アイコン hover アニメーション（矢印と整合） */
 .icon-switch {
     position: relative;
     width: 42px;
     height: 42px;
     display: inline-block;
     transition: transform 0.45s ease;
+
+    /* ← これが今回の重要ポイントです */
+    transform-origin: top center;
 }
 
 .icon-switch:hover {
     transform: scale(1.1);
 }
 
-/* 2枚重ね画像（紫とピンク） */
+/* 2枚重ね画像（紫・ピンク） */
 .icon-switch img {
     position: absolute;
     inset: 0;
@@ -167,17 +170,14 @@ h1:after {
     transition: opacity 0.45s ease;
 }
 
-/* 紫 */
 .icon-normal {
     opacity: 1;
 }
 
-/* ピンク */
 .icon-hover {
     opacity: 0;
 }
 
-/* 切り替え（画像自体は scale しない） */
 .icon-switch:hover .icon-normal {
     opacity: 0;
 }
