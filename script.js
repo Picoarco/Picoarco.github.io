@@ -1,7 +1,19 @@
 // 画像リスト
 const images = [
     "images/top1.gif",
-    "images/top2.gif"
+    "images/top2.jpg",
+    "images/top3.gif",
+    "images/top4.gif",
+    "images/top5.gif",
+    "images/top6.gif",
+    "images/top7.jpg",
+    "images/top8.gif",
+    "images/top9.gif",
+    "images/top10.gif",
+    "images/top11.gif",
+    "images/top12.gif",
+    "images/top13.png",
+    "images/top14.gif",
 ];
 
 let index = 0;
@@ -67,5 +79,5 @@ function closeModal() {
     // アニメーション終了後に非表示
     setTimeout(() => {
         modal.style.display = "none";
-    }, 200);
+    }, 300);
 }
