@@ -237,13 +237,12 @@ footer {
         padding: 0 20px;
     }
 
-    /* ← 画像を 2px 小さくして自然に余白を作る */
     .slider img {
-        height: 223px;
+        height: 180px;
     }
 
-    .arrow.left  { left: -15px; }
-    .arrow.right { right: -15px; }
+    .arrow.left  { left: -12px; }
+    .arrow.right { right: -12px; }
 
     .icons {
         margin-top: 10px;
