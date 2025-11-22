@@ -241,8 +241,8 @@ footer {
         height: 150px;
     }
 
-    .arrow.left  { left: -12px; }
-    .arrow.right { right: -12px; }
+    .arrow.left  { left: -10px; }
+    .arrow.right { right: -10px; }
 
     .icons {
         margin-top: 10px;
