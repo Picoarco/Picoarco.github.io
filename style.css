@@ -11,6 +11,18 @@ body {
     text-align: center;
 }
 
+/* タイトルリンク */
+.title-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.45s ease, transform 0.45s ease;
+}
+
+.title-link:hover {
+    color: #FFE6F5;
+    transform: scale(1.08);
+}
+
 /* 背景パターン（白い水玉） */
 .bg_pattern {
     position: fixed;
@@ -134,7 +146,7 @@ h1:after {
     transform: translateY(-50%) scale(1.1);
 }
 
-/* SNSアイコンの共通設定 */
+/* SNSアイコン */
 .icons {
     margin-top: 24px;
     display: flex;
@@ -145,20 +157,19 @@ h1:after {
 }
 
 .icons img {
-    width: 42px;      /* ← アイコンの実際の表示サイズ */
-    height: 42px;     /* ← これを指定して大きさを統一 */
+    width: 42px;
+    height: 42px;
     object-fit: contain;
     transition: transform 0.3s ease, opacity 0.3s ease;
     cursor: pointer;
 }
 
-/* ホバー時の動き（画像切替とは別の効果） */
 .icons img:hover {
     transform: translateY(-2px) scale(1.08);
     opacity: 0.9;
 }
 
-/* 1つ目：mail */
+/* mail */
 .icons a:nth-child(1) img {
     content: url("images/icons/mail.png");
 }
@@ -166,7 +177,7 @@ h1:after {
     content: url("images/icons/mail2.png");
 }
 
-/* 2つ目：itchio */
+/* itchio */
 .icons a:nth-child(2) img {
     content: url("images/icons/itchio.png");
 }
@@ -174,14 +185,13 @@ h1:after {
     content: url("images/icons/itchio2.png");
 }
 
-/* 3つ目：steam */
+/* steam */
 .icons a:nth-child(3) img {
     content: url("images/icons/steam.png");
 }
 .icons a:nth-child(3):hover img {
     content: url("images/icons/steam2.png");
 }
-
 
 /* メッセージ */
 .thanks-message {
