@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Picoarco</title>
+
+    <link rel="icon" href="favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- 背景の水玉パターン -->
+<div class="bg_pattern Polka_v2"></div>
+
+<div class="container">
+
+    <h1>PICOARCO</h1>
+    <small class="subtitle">Indie Game Studio</small>
+
+    <div class="slider">
+        <button class="arrow left" onclick="prevImage()">◀</button>
+
+        <img id="slider-img"
+             src="images/top1.gif"
+             alt="illustration"
+             onclick="openModal()">
+
+        <button class="arrow right" onclick="nextImage()">▶</button>
+    </div>
+
+    <div id="modal" class="modal" onclick="closeModal()">
+        <img id="modal-img">
+    </div>
+
+    <div class="icons">
+    <a href="#"><img src="images/icons/mail.png" alt="mail"></a>
+    <a href="#"><img src="images/icons/itchio.png" alt="itch.io"></a>
+    <a href="#"><img src="images/icons/steam.png" alt="steam"></a>
+    </div>
+
+    <div class="thanks-message">
+        Thanks for visiting!
+    </div>
+
+</div>
+
+<footer>
+    © 2025 Picoarco
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
