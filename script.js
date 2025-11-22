@@ -1,18 +1,19 @@
 const images = [
-    "images/top1.gif",
-    "images/top2.jpg",
+    "images/top1.jpg",
+    "images/top2.gif",
     "images/top3.gif",
-    "images/top4.gif",
+    "images/top4.jpg",
     "images/top5.gif",
     "images/top6.gif",
-    "images/top7.jpg",
+    "images/top7.gif",
     "images/top8.gif",
     "images/top9.gif",
     "images/top10.gif",
     "images/top11.gif",
-    "images/top12.gif",
-    "images/top13.png",
+    "images/top12.png",
+    "images/top13.gif",
     "images/top14.gif",
+    "images/top15.gif",
 ];
 
 let index = 0;
