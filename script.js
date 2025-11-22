@@ -17,9 +17,7 @@ const images = [
 
 let index = 0;
 
-const imgFront = document.getElementById("slider-img");      // 上の画像（フェードする）
-const imgBack = document.getElementById("slider-img-back");  // 下の画像（次の画像を先に表示）
-
+const imgElement = document.getElementById("slider-img");
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
 
@@ -32,29 +30,28 @@ const preloadImages = () => {
 };
 preloadImages();
 
-// スライド表示（ちらつき防止版）
+// フェード初期設定
+imgElement.classList.add("fade");
+
+window.addEventListener("load", () => {
+    imgElement.classList.add("show");
+});
+
+const FADE_TIME = 300;
+
+// スライド表示
 function showImage() {
-    // 下に次の画像をセット
-    imgBack.src = images[index];
+    imgElement.classList.remove("show");
 
-    // 上をフェードアウト
-    imgFront.style.opacity = 0;
+    setTimeout(() => {
+        imgElement.src = images[index];
 
-    // フェード完了後に上の画像を差し替える
-    imgFront.addEventListener("transitionend", function handler() {
-        imgFront.removeEventListener("transitionend", handler);
-
-        // 上の画像を差し替え
-        imgFront.src = images[index];
-
-        // モーダル表示中も同期
         if (modal.style.display === "flex") {
             modalImg.src = images[index];
         }
 
-        // 再び表示
-        imgFront.style.opacity = 1;
-    });
+        imgElement.classList.add("show");
+    }, FADE_TIME);
 }
 
 function nextImage() {
@@ -72,16 +69,17 @@ function openModal() {
     modal.style.display = "flex";
     modalImg.src = images[index];
 
-    modalImg.style.opacity = 0;
+    modalImg.classList.remove("show");
     setTimeout(() => {
-        modalImg.style.opacity = 1;
+        modalImg.classList.add("show");
     }, 10);
 }
 
 // モーダル閉じる
 function closeModal() {
-    modalImg.style.opacity = 0;
+    modalImg.classList.remove("show");
+
     setTimeout(() => {
         modal.style.display = "none";
-    }, 300);
+    }, FADE_TIME);
 }

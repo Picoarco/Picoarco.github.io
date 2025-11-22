@@ -26,11 +26,10 @@
     <div class="slider">
         <button class="arrow left" onclick="prevImage()">◀</button>
 
-        <!-- 追加：二重レイヤー化 -->
-        <div class="slider-img-wrap">
-            <img id="slider-img-back" class="slider-img" src="images/top1.gif" alt="">
-            <img id="slider-img" class="slider-img top" src="images/top1.gif" alt="" onclick="openModal()">
-        </div>
+        <img id="slider-img"
+             src="images/top1.gif"
+             alt="slider image"
+             onclick="openModal()">
 
         <button class="arrow right" onclick="nextImage()">▶</button>
     </div>
