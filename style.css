@@ -134,7 +134,7 @@ h1:after {
 }
 
 .icons {
-    margin: 24px auto 18px;
+    margin: 24px auto 12px;
     display: flex;
     justify-content: center;
     gap: 36px;
