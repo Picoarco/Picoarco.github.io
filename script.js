@@ -1,4 +1,3 @@
-// 画像リスト
 const images = [
     "images/top1.gif",
     "images/top2.jpg",
@@ -22,28 +21,25 @@ const imgElement = document.getElementById("slider-img");
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
 
-// ------------------------------
-// ■ 追加：プリロード処理
-// ------------------------------
+// 画像プリロード
 const preloadImages = () => {
-    images.forEach((src) => {
+    images.forEach(src => {
         const img = new Image();
         img.src = src;
     });
 };
-
-// ページ読み込み時に実行
 preloadImages();
 
-// 初期フェード設定
+// フェード初期設定
 imgElement.classList.add("fade");
 
-// ページ読み込み後に初回の画像を表示
 window.addEventListener("load", () => {
     imgElement.classList.add("show");
 });
 
-// スライド切り替え
+const FADE_TIME = 300;
+
+// スライド表示
 function showImage() {
     imgElement.classList.remove("show");
 
@@ -55,7 +51,7 @@ function showImage() {
         }
 
         imgElement.classList.add("show");
-    }, 400);
+    }, FADE_TIME);
 }
 
 function nextImage() {
@@ -68,24 +64,22 @@ function prevImage() {
     showImage();
 }
 
-// モーダル開閉
+// モーダル開く
 function openModal() {
     modal.style.display = "flex";
-
-    modalImg.classList.remove("show");
-    modalImg.classList.add("fade");
-
     modalImg.src = images[index];
 
+    modalImg.classList.remove("show");
     setTimeout(() => {
         modalImg.classList.add("show");
     }, 10);
 }
 
+// モーダル閉じる
 function closeModal() {
     modalImg.classList.remove("show");
 
     setTimeout(() => {
         modal.style.display = "none";
-    }, 300);
+    }, FADE_TIME);
 }
