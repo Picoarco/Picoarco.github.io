@@ -83,19 +83,19 @@ h1::after {
 
 /* サブタイトル */
 .subtitle {
-    margin: 2px 0 18px;
+    margin: 2px 0 10px;
     font-size: 16px;
     color: #b7bdf5;
     opacity: 0.9;
 }
 
-/* スライダー（PC 基本） */
+/* スライダー（基本） */
 .slider {
     position: relative;
     width: 100%;
     max-width: 620px;
     margin: 0 auto;
-    padding: 0 70px;
+    padding: 0 40px; /* ← PC/スマホで統一して狭めた */
 }
 
 .slider img {
@@ -107,7 +107,7 @@ h1::after {
     transition: opacity 0.3s ease;
 }
 
-/* 矢印（PC 基本） */
+/* 矢印 */
 .arrow {
     position: absolute;
     top: 50%;
@@ -126,8 +126,8 @@ h1::after {
     transition: color 0.45s ease;
 }
 
-.arrow.left { left: 8px; }
-.arrow.right { right: 8px; }
+.arrow.left { left: 6px; }
+.arrow.right { right: 6px; }
 
 .arrow:hover {
     color: #FFE6F5;
@@ -136,7 +136,7 @@ h1::after {
 
 /* アイコン列 */
 .icons {
-    margin: 24px auto 16px;
+    margin: 14px auto 16px;
     display: flex;
     justify-content: center;
     gap: 36px;
@@ -145,7 +145,6 @@ h1::after {
     padding-bottom: 22px;
 }
 
-/* アイコン切替 */
 .icon-switch {
     position: relative;
     width: 42px;
@@ -225,31 +224,26 @@ footer {
     border-radius: 0px;
 }
 
-/* ================================
-  スマホ（480px 以下）
-================================ */
+/* ---------------------------
+   スマホ（480px 以下）
+---------------------------- */
 @media (max-width: 480px) {
 
     body {
         padding: 40px 10px;
     }
 
-    .container {
-        max-width: 92%;
-    }
-
     .slider {
-        padding: 0 30px;   /* ← スマホの理想余白 */
-        margin-bottom: 4px;
+        padding: 0 20px;
     }
 
+    /* ← 画像を 2px 小さくして自然に余白を作る */
     .slider img {
-        height: 225px;
-        object-fit: contain;
+        height: 223px;
     }
 
-    .arrow.left { left: -12px; }
-    .arrow.right { right: -12px; }
+    .arrow.left  { left: -15px; }
+    .arrow.right { right: -15px; }
 
     .icons {
         margin-top: 10px;
@@ -257,40 +251,22 @@ footer {
     }
 }
 
-/* ================================
-  PC（600px〜）：ライン幅調整
-================================ */
+/* ---------------------------
+   PC（600px 以上）
+---------------------------- */
 @media (min-width: 600px) {
 
-    h1::after {
-        width: 280px;
-    }
-
-    .icons::after {
-        width: 280px;
-    }
+    h1::after { width: 280px; }
+    .icons::after { width: 280px; }
 
     .slider {
-        padding-top: 16px !important;
+        padding-top: 6px; /* 余白を自然に */
+        padding-left: 40px;
+        padding-right: 40px;
     }
 }
 
-/* ================================
-  PC（481px〜）：矢印＋余白を安定
-================================ */
-@media (min-width: 481px) {
-
-    .arrow.left { left: 8px; }
-    .arrow.right { right: 8px; }
-
-    .slider {
-        padding: 0 70px;   /* ← PC の正しい広さに戻す */
-    }
-}
-
-/* ================================
-  スライダーのフェード復活（修正版）
-================================ */
+/* スライダーのフェード */
 .fade {
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
