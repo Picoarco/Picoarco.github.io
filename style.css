@@ -134,7 +134,7 @@ h1:after {
 }
 
 .icons {
-    margin: 24px auto 40px;
+    margin: 24px auto 18px;
     display: flex;
     justify-content: center;
     gap: 36px;
@@ -177,7 +177,7 @@ h1:after {
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
-    width: 84%;   /* ← こちらも統一 */
+    width: 65%;   /* ← こちらも統一 */
     height: 12px;
     background: repeating-linear-gradient(
         -45deg,
