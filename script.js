@@ -1,3 +1,19 @@
+// iOS 用アイコン切り替え処理
+(function () {
+    var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    if (isiOS) {
+        var oldIcon = document.querySelector('link[rel="apple-touch-icon"]');
+        if (oldIcon) oldIcon.remove();
+
+        var link = document.createElement("link");
+        link.rel = "apple-touch-icon";
+        link.href = "apple-touch-icon-white.png"; // 白背景版
+        link.sizes = "180x180";
+        document.head.appendChild(link);
+    }
+})();
+
+// --- 以下、元のスライダー機能 ---
 const images = [
     "images/top1.jpg",
     "images/top2.gif",
@@ -22,7 +38,7 @@ const imgElement = document.getElementById("slider-img");
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
 
-// 画像プリロード
+// プリロード
 const preloadImages = () => {
     images.forEach(src => {
         const img = new Image();
@@ -31,7 +47,6 @@ const preloadImages = () => {
 };
 preloadImages();
 
-// フェード初期設定
 imgElement.classList.add("fade");
 
 window.addEventListener("load", () => {
@@ -40,7 +55,6 @@ window.addEventListener("load", () => {
 
 const FADE_TIME = 300;
 
-// スライド表示
 function showImage() {
     imgElement.classList.remove("show");
 
@@ -65,7 +79,6 @@ function prevImage() {
     showImage();
 }
 
-// モーダル開く
 function openModal() {
     modal.style.display = "flex";
     modalImg.src = images[index];
@@ -76,7 +89,6 @@ function openModal() {
     }, 10);
 }
 
-// モーダル閉じる
 function closeModal() {
     modalImg.classList.remove("show");
 
