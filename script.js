@@ -1,4 +1,3 @@
-// iOS 用アイコン切り替え処理
 (function () {
     var isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
     if (isiOS) {
@@ -13,7 +12,6 @@
     }
 })();
 
-// --- スライダー画像一覧 ---
 const images = [
     "images/top1.webp",
     "images/top2.webp",
@@ -79,7 +77,7 @@ function prevImage() {
     showImage();
 }
 
-// モーダル開閉
+
 function openModal() {
     modal.style.display = "flex";
     modalImg.src = images[index];
@@ -98,9 +96,6 @@ function closeModal() {
     }, FADE_TIME);
 }
 
-// -------------------------------
-//  矢印ボタン（光らせるために必要）
-// -------------------------------
 const leftArrow = document.querySelector(".arrow.left");
 const rightArrow = document.querySelector(".arrow.right");
 
@@ -111,9 +106,6 @@ function flashArrow(arrowElement) {
     }, 150);
 }
 
-// -------------------------------
-//  十字キー操作（通常・モーダル共に動作）
-// -------------------------------
 document.addEventListener("keydown", function (e) {
     if (e.key === "ArrowRight") {
         flashArrow(rightArrow);
@@ -124,9 +116,6 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
-// -------------------------------
-//  スワイプ操作（通常・モーダル共に動作）
-// -------------------------------
 let startX = 0;
 let endX = 0;
 
@@ -140,7 +129,6 @@ function handleSwipe(diff) {
     }
 }
 
-// 通常画像のスワイプ
 imgElement.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
 });
@@ -149,7 +137,6 @@ imgElement.addEventListener("touchend", (e) => {
     handleSwipe(endX - startX);
 });
 
-// モーダル拡大画像のスワイプ
 modalImg.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
 });

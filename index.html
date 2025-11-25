@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picoarco</title>
 
-    <!-- favicon -->
     <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
     <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
     
-    <!-- 透過版は通常用 -->
     <link rel="apple-touch-icon" href="apple-touch-icon-180.png" sizes="180x180" id="touch-icon-default">
 
-    <!-- iPhoneアクセス時に白背景版へ切り替えるJS -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var ua = navigator.userAgent.toLowerCase();
@@ -24,7 +21,7 @@
 
           var link = document.createElement("link");
           link.rel = "apple-touch-icon";
-          link.href = "apple-touch-icon-white.png";  // 白背景版を配置
+          link.href = "apple-touch-icon-white.png"; 
           link.sizes = "180x180";
           document.head.appendChild(link);
         }

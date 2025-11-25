@@ -9,14 +9,12 @@ body {
     background: #FFE6F5;
     text-align: center;
 
-    /* ここから追加 */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-/* タイトルリンク */
 .title-link {
     text-decoration: none;
     color: inherit;
@@ -29,7 +27,6 @@ body {
     transform: scale(1.01);
 }
 
-/* 背景パターン */
 .bg_pattern {
     position: fixed;
     top: 0;
@@ -49,7 +46,6 @@ body {
     background-position: 0 0, 20px 20px;
 }
 
-/* 白いカード */
 .container {
     background: #ffffff;
     width: 100%;
@@ -60,7 +56,6 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
 }
 
-/* タイトル */
 h1 {
     position: relative;
     margin: 0 0 16px;
@@ -87,7 +82,6 @@ h1::after {
     border-radius: 3px;
 }
 
-/* サブタイトル */
 .subtitle {
     margin-top: 2px;
     margin-bottom: 0;
@@ -96,12 +90,11 @@ h1::after {
     opacity: 0.9;
 }
 
-/* スライダー（基本） */
 .slider {
     position: relative;
     width: 100%;
     max-width: 500px;
-    margin: 10px auto 0; /* ← ★ この20pxが確実に見える余白 */
+    margin: 10px auto 0;
     padding: 0 40px;
 }
 
@@ -114,7 +107,6 @@ h1::after {
     transition: opacity 0.3s ease;
 }
 
-/* 矢印 */
 .arrow {
     position: absolute;
     top: 50%;
@@ -147,7 +139,6 @@ h1::after {
 }
 
 
-/* アイコン列 */
 .icons {
     margin: 14px auto 16px;
     display: flex;
@@ -184,7 +175,6 @@ h1::after {
 .icon-switch:hover .icon-normal { opacity: 0; }
 .icon-switch:hover .icon-hover { opacity: 1; }
 
-/* SNS 下ライン */
 .icons::after {
     content: "";
     position: absolute;
@@ -211,7 +201,6 @@ h1::after {
     opacity: 0.9;
 }
 
-/* フッター */
 footer {
     margin-top: 10px;
     color: #939DEA;
@@ -236,9 +225,6 @@ footer {
     border-radius: 20px;
 }
 
-/* ---------------------------
-   スマホ（480px 以下）
----------------------------- */
 @media (max-width: 480px) {
 
     body {
@@ -262,9 +248,7 @@ footer {
     }
 }
 
-/* ---------------------------
-   PC（600px 以上）
----------------------------- */
+
 @media (min-width: 600px) {
 
     h1::after { width: 280px; }
@@ -277,7 +261,6 @@ footer {
     }
 }
 
-/* スライダーのフェード */
 .fade {
     opacity: 0;
     transition: opacity 0.35s ease-in-out;
