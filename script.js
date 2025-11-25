@@ -12,24 +12,7 @@
     }
 })();
 
-const images = [
-    "images/top1.webp",
-    "images/top2.webp",
-    "images/top3.webp",
-    "images/top4.webp",
-    "images/top5.webp",
-    "images/top6.webp",
-    "images/top7.webp",
-    "images/top8.webp",
-    "images/top9.webp",
-    "images/top10.webp",
-    "images/top11.webp",
-    "images/top12.webp",
-    "images/top13.webp",
-    "images/top14.webp",
-    "images/top15.webp",
-    "images/top16.webp",
-];
+const images = Array.from({ length: 16 }, (_, i) => `images/top${i + 1}.webp`);
 
 let index = 0;
 
@@ -37,7 +20,6 @@ const imgElement = document.getElementById("slider-img");
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
 
-// プリロード
 const preloadImages = () => {
     images.forEach(src => {
         const img = new Image();
@@ -76,7 +58,6 @@ function prevImage() {
     index = (index - 1 + images.length) % images.length;
     showImage();
 }
-
 
 function openModal() {
     modal.style.display = "flex";

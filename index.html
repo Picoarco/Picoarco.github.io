@@ -10,24 +10,6 @@
     
     <link rel="apple-touch-icon" href="apple-touch-icon-180.png" sizes="180x180" id="touch-icon-default">
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        var ua = navigator.userAgent.toLowerCase();
-        var isiOS = ua.includes("iphone") || ua.includes("ipad") || ua.includes("ipod");
-
-        if (isiOS) {
-          var oldIcon = document.getElementById("touch-icon-default");
-          if (oldIcon) oldIcon.remove();
-
-          var link = document.createElement("link");
-          link.rel = "apple-touch-icon";
-          link.href = "apple-touch-icon-white.png"; 
-          link.sizes = "180x180";
-          document.head.appendChild(link);
-        }
-      });
-    </script>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
