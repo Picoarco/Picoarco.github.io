@@ -146,11 +146,11 @@ h1::after,
     flex-wrap: wrap;
     position: relative;
     padding-bottom: 1.5rem;
-    transform: translateX(-7px);
+    transform: translateX(-6px);
 }
 
 .icons::after {
-    transform: translateX(calc(-50% + 7px));
+    transform: translateX(calc(-50% + 6px));
 }
 
 .icon-switch {
