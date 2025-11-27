@@ -142,7 +142,7 @@ h1::after,
     margin: 0.875rem auto 1rem;
     display: flex;
     justify-content: center;
-    gap: 1.125rem;
+    gap: 0.8rem;
     flex-wrap: wrap;
     position: relative;
     padding-bottom: 1.5rem;
@@ -184,9 +184,11 @@ h1::after,
 
 .steam-icon {
     transform: scale(0.93);
+     margin: 0 0.2rem;
 }
 .steam-icon:hover {
     transform: scale(0.94);
+     margin: 0 0.2rem;
 }
 
 .thanks-message {
