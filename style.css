@@ -134,7 +134,7 @@ h1::after {
 }
 
 .arrow.active {
-    transform: translateY(-50%) scale(0.9);
+    transform: translateY(-50%) scale(1.01);
     color: #FFE6F5;
 }
 
