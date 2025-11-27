@@ -125,3 +125,4 @@ modalImg.addEventListener("touchend", (e) => {
     endX = e.changedTouches[0].clientX;
     handleSwipe(endX - startX);
 });
+
