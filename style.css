@@ -192,6 +192,13 @@ h1::after {
     border-radius: 0.1875rem;
 }
 
+.steam-icon {
+    transform: scale(0.95);
+}
+.steam-icon:hover {
+    transform: scale(0.96); 
+}
+
 .thanks-message {
     margin-bottom: 3.125rem; /* 50px */
     font-size: 1rem;
