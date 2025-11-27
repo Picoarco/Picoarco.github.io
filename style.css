@@ -210,16 +210,21 @@ footer {
     inset: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 10;
-    justify-content: center;
+
+    display: flex;                /* ← display:none を使わない */
+    justify-content: center;      /* ← 中央寄せが常に機能する */
     align-items: center;
+
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.35s ease;
+    pointer-events: none;         /* ← 非表示中のタップを無効化 */
+    transition: opacity 0.3s ease;
 }
 
 .modal.visible {
     opacity: 1;
     visibility: visible;
+    pointer-events: auto;
 }
 
 .modal img {
