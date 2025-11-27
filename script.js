@@ -126,16 +126,3 @@ modalImg.addEventListener("touchend", (e) => {
     handleSwipe(endX - startX);
 });
 
-const titleLink = document.querySelector(".title-link");
-
-if (titleLink) {
-    titleLink.addEventListener("touchstart", () => {
-        titleLink.classList.add("active");
-    });
-
-    titleLink.addEventListener("touchend", () => {
-        setTimeout(() => {
-            titleLink.classList.remove("active");
-        }, 150);
-    });
-}
