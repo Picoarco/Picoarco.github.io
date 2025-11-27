@@ -22,7 +22,14 @@ body {
     transition: color 0.45s ease, transform 0.45s ease;
 }
 
+/* PC hover */
 .title-link:hover {
+    color: #FFE6F5;
+    transform: scale(1.01);
+}
+
+/* ★ スマホ対応 active クラス追加 */
+.title-link.active {
     color: #FFE6F5;
     transform: scale(1.01);
 }
