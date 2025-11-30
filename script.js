@@ -1,17 +1,3 @@
-(function () {
-    const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-    if (isiOS) {
-        const oldIcon = document.querySelector('link[rel="apple-touch-icon"]');
-        if (oldIcon) oldIcon.remove();
-
-        const link = document.createElement("link");
-        link.rel = "apple-touch-icon";
-        link.href = "apple-touch-icon-white.png";
-        link.sizes = "180x180";
-        document.head.appendChild(link);
-    }
-})();
-
 const images = Array.from({ length: 16 }, (_, i) => `images/top${i + 1}.webp`);
 
 let index = 0;
