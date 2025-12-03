@@ -128,6 +128,7 @@ h1::after,
 .arrow.left {
     left: -1.25rem;
 }
+
 .arrow.right {
     right: -1.25rem;
 }
@@ -171,6 +172,7 @@ h1::after,
 .icon-normal {
     opacity: 1;
 }
+
 .icon-hover {
     opacity: 0;
 }
@@ -178,17 +180,19 @@ h1::after,
 .icon-switch:hover .icon-normal {
     opacity: 0;
 }
+
 .icon-switch:hover .icon-hover {
     opacity: 1;
 }
 
 .steam-icon {
     transform: scale(0.93);
-     margin: 0 0.2rem;
+    margin: 0 0.2rem;
 }
+
 .steam-icon:hover {
     transform: scale(0.94);
-     margin: 0 0.2rem;
+    margin: 0 0.2rem;
 }
 
 .thanks-message {
@@ -211,13 +215,13 @@ footer {
     background: rgba(0, 0, 0, 0.6);
     z-index: 10;
 
-    display: flex;                /* ← display:none を使わない */
-    justify-content: center;      /* ← 中央寄せが常に機能する */
+    display: flex;
+    justify-content: center;
     align-items: center;
 
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;         /* ← 非表示中のタップを無効化 */
+    pointer-events: none;
     transition: opacity 0.3s ease;
 }
 
@@ -249,21 +253,23 @@ footer {
 }
 
 @media (max-width: 480px) {
+
     body {
         padding: 2.5rem 0.625rem;
     }
 
     .slider {
-        padding: 0 2.5rem;
+        padding: 0 2.4rem;
     }
 
     .slider img {
-        height: 12.5rem;
+        height: 12rem;
     }
 
     .arrow.left {
         left: -0.25rem;
     }
+
     .arrow.right {
         right: -0.25rem;
     }
@@ -274,7 +280,27 @@ footer {
     }
 }
 
+@media (min-width: 480px) and (max-width: 700px) {
+
+    .slider {
+        padding: 0 2.6rem;
+    }
+
+    .slider img {
+        height: 14rem;
+    }
+
+    .arrow.left {
+        left: -0.2rem;
+    }
+
+    .arrow.right {
+        right: -0.2rem;
+    }
+}
+
 @media (min-width: 600px) {
+
     h1::after,
     .icons::after {
         width: 17.5rem;
