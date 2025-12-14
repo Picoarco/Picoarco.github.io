@@ -27,40 +27,12 @@ body {
     transform: scale(1.01);
 }
 
-.bg_pattern {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #FFE6F5;
-    opacity: 0.5;
-    z-index: -1;
-}
-
-.Polka_v2 {
-    background-image:
-        radial-gradient(#ffffff 3px, transparent 3px),
-        radial-gradient(#ffffff 3px, transparent 3px);
-    background-size: 40px 40px;
-    background-position: 0 0, 20px 20px;
-}
-
-.container {
-    background: #ffffff;
-    width: 100%;
-    max-width: 38.75rem;
-    margin: 0 auto;
-    padding: 2.5rem 1.25rem 1.25rem;
-    border-radius: 3.75rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
-}
-
 h1 {
     position: relative;
     margin: 0 0 1rem;
     padding: 0.625rem 0;
-    color: #939DEA;
     font-size: 3rem;
+    color: #939DEA;
 }
 
 h1::after,
@@ -90,6 +62,34 @@ h1::after,
     opacity: 0.9;
 }
 
+.bg_pattern {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #FFE6F5;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.Polka_v2 {
+    background-image:
+        radial-gradient(#ffffff 3px, transparent 3px),
+        radial-gradient(#ffffff 3px, transparent 3px);
+    background-size: 40px 40px;
+    background-position: 0 0, 20px 20px;
+}
+
+.container {
+    background: #ffffff;
+    width: 100%;
+    max-width: 38.75rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 1.25rem;
+    border-radius: 3.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+}
+
 .slider {
     position: relative;
     width: 100%;
@@ -107,49 +107,69 @@ h1::after,
     transition: opacity 0.35s ease-in-out;
 }
 
-
-button.left,
-button.right {
+.arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-
     width: 2.5rem;
     height: 2.5rem;
-
     border: none;
-    background-color: transparent;
+    background: none;
+    cursor: pointer;
+    z-index: 3;
+    padding: 0;
+}
+
+.arrow.left {
+    left: -1.25rem;
+}
+
+.arrow.right {
+    right: -1.25rem;
+}
+
+.arrow-img {
+    position: absolute;
+    inset: 0;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-
-    cursor: pointer;
-    z-index: 3;
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-/* 左矢印 */
-button.left {
-    left: -1.25rem;
+.arrow-img.normal {
+    opacity: 1;
+}
+
+.arrow-img.hover {
+    opacity: 0;
+}
+
+.arrow:hover .arrow-img.normal {
+    opacity: 0;
+}
+
+.arrow:hover .arrow-img.hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* 左右画像 */
+.arrow.left .normal {
     background-image: url("images/icons/left.webp");
 }
 
-button.left:hover,
-button.left.active {
+.arrow.left .hover {
     background-image: url("images/icons/left2.webp");
 }
 
-/* 右矢印 */
-button.right {
-    right: -1.25rem;
+.arrow.right .normal {
     background-image: url("images/icons/right.webp");
 }
 
-button.right:hover,
-button.right.active {
+.arrow.right .hover {
     background-image: url("images/icons/right2.webp");
 }
-
-/* ========================= */
 
 .icons {
     margin: 0.875rem auto 1rem;
@@ -202,20 +222,6 @@ button.right.active {
     margin: 0 0.2rem;
 }
 
-.thanks-message {
-    margin-bottom: 3.125rem;
-    font-size: 1rem;
-    color: #b7bdf5;
-    opacity: 0.9;
-}
-
-footer {
-    margin-top: 0.625rem;
-    color: #939DEA;
-    font-size: 0.875rem;
-    font-family: sans-serif;
-}
-
 .modal {
     position: fixed;
     inset: 0;
@@ -254,6 +260,20 @@ footer {
     transition: opacity 0.35s ease-in-out;
 }
 
+.thanks-message {
+    margin-bottom: 3.125rem;
+    font-size: 1rem;
+    color: #b7bdf5;
+    opacity: 0.9;
+}
+
+footer {
+    margin-top: 0.625rem;
+    color: #939DEA;
+    font-size: 0.875rem;
+    font-family: sans-serif;
+}
+
 @media (max-width: 480px) {
 
     body {
@@ -268,11 +288,11 @@ footer {
         height: 12rem;
     }
 
-    button.left {
+    .arrow.left {
         left: -0.6rem;
     }
 
-    button.right {
+    .arrow.right {
         right: -0.6rem;
     }
 }
@@ -287,11 +307,11 @@ footer {
         height: 14rem;
     }
 
-    button.left {
+    .arrow.left {
         left: -0.2rem;
     }
 
-    button.right {
+    .arrow.right {
         right: -0.2rem;
     }
 }

@@ -15,7 +15,6 @@ const preloadImages = () => {
 };
 preloadImages();
 
-// 初期フェード設定
 imgElement.classList.add("fade");
 
 window.addEventListener("load", () => {
@@ -24,7 +23,6 @@ window.addEventListener("load", () => {
 
 const FADE_TIME = 300;
 
-// 画像切り替え
 function showImage() {
     imgElement.classList.remove("show-slider");
     modalImg.classList.remove("show-modal");
@@ -59,7 +57,6 @@ function openModal() {
     }, 10);
 }
 
-// モーダルを閉じる
 function closeModal() {
     modalImg.classList.remove("show-modal");
 
@@ -71,7 +68,6 @@ function closeModal() {
 
 modal.addEventListener("click", closeModal);
 
-// キーボード操作
 const leftArrow = document.querySelector(".arrow.left");
 const rightArrow = document.querySelector(".arrow.right");
 
