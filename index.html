@@ -22,20 +22,28 @@
 
 <div class="container">
 
-    <h1><a href="/" class="title-link">PICOARCO</a></h1>
+    <h1>
+        <a href="/" class="title-link">PICOARCO</a>
+    </h1>
     <small class="subtitle">Indie Game Studio</small>
 
-   <div class="slider">
-        <button class="arrow left" onclick="prevImage()">◀</button>
+    <div class="slider">
+
+        <!-- 左矢印 -->
+        <button class="arrow left" onclick="prevImage()"></button>
 
         <div class="slider-inner">
-            <img id="slider-img"
+            <img
+                id="slider-img"
                 src="images/top1.webp"
                 alt="slider image"
-                onclick="openModal()">
+                onclick="openModal()"
+            >
         </div>
 
-        <button class="arrow right" onclick="nextImage()">▶</button>
+        <!-- 右矢印 -->
+        <button class="arrow right" onclick="nextImage()"></button>
+
     </div>
 
     <div id="modal" class="modal" onclick="closeModal()">
@@ -44,6 +52,7 @@
 
     <div class="icons">
 
+        <!-- Steam -->
         <a href="#" class="icon-switch">
             <img class="icon-normal steam-icon" src="images/icons/steam.webp" alt="steam">
             <img class="icon-hover steam-icon" src="images/icons/steam2.webp" alt="steam hover">

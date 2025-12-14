@@ -104,40 +104,52 @@ h1::after,
     border-radius: 1.25rem;
     cursor: pointer;
     object-fit: cover;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.35s ease-in-out;
 }
 
-.arrow {
+
+button.left,
+button.right {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: none;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
     border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
     cursor: pointer;
-    color: #939DEA;
-    font-size: 2.5rem;
-    width: 2.125rem;
-    height: 2.125rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     z-index: 3;
-    transition: color 0.45s ease, transform 0.45s ease;
 }
 
-.arrow.left {
+/* 左矢印 */
+button.left {
     left: -1.25rem;
+    background-image: url("images/icons/left.webp");
 }
 
-.arrow.right {
+button.left:hover,
+button.left.active {
+    background-image: url("images/icons/left2.webp");
+}
+
+/* 右矢印 */
+button.right {
     right: -1.25rem;
+    background-image: url("images/icons/right.webp");
 }
 
-.arrow:hover,
-.arrow.active {
-    color: #FFE6F5;
-    transform: translateY(-50%) scale(1.05);
+button.right:hover,
+button.right.active {
+    background-image: url("images/icons/right2.webp");
 }
+
+/* ========================= */
 
 .icons {
     margin: 0.875rem auto 1rem;
@@ -190,11 +202,6 @@ h1::after,
     margin: 0 0.2rem;
 }
 
-.steam-icon:hover {
-    transform: scale(0.94);
-    margin: 0 0.2rem;
-}
-
 .thanks-message {
     margin-bottom: 3.125rem;
     font-size: 1rem;
@@ -239,14 +246,9 @@ footer {
 
 .fade {
     opacity: 0;
-    transition: opacity 0.35s ease-in-out;
 }
 
-.show-slider {
-    opacity: 1;
-    transition: opacity 0.35s ease-in-out;
-}
-
+.show-slider,
 .show-modal {
     opacity: 1;
     transition: opacity 0.35s ease-in-out;
@@ -266,17 +268,12 @@ footer {
         height: 12rem;
     }
 
-    .arrow.left {
-        left: -0.25rem;
+    button.left {
+        left: -0.6rem;
     }
 
-    .arrow.right {
-        right: -0.25rem;
-    }
-
-    .icons {
-        margin-top: 0.625rem;
-        margin-bottom: 0.875rem;
+    button.right {
+        right: -0.6rem;
     }
 }
 
@@ -290,11 +287,11 @@ footer {
         height: 14rem;
     }
 
-    .arrow.left {
+    button.left {
         left: -0.2rem;
     }
 
-    .arrow.right {
+    button.right {
         right: -0.2rem;
     }
 }
