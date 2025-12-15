@@ -6,7 +6,6 @@ const imgElement = document.getElementById("slider-img");
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
 
-// Preload
 const preloadImages = () => {
     images.forEach(src => {
         const img = new Image();
