@@ -46,7 +46,6 @@ function prevImage() {
     showImage();
 }
 
-// モーダルを開く
 function openModal() {
     modal.classList.add("visible");
     modalImg.src = images[index];
@@ -88,7 +87,6 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
-// スワイプ
 let startX = 0;
 let endX = 0;
 
