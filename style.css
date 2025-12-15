@@ -154,7 +154,6 @@ h1::after,
     transform: scale(1.05);
 }
 
-/* 左右画像 */
 .arrow.left .normal {
     background-image: url("images/icons/left.webp");
 }
@@ -169,6 +168,15 @@ h1::after,
 
 .arrow.right .hover {
     background-image: url("images/icons/right2.webp");
+}
+
+.arrow.active .arrow-img.normal {
+    opacity: 0;
+}
+
+.arrow.active .arrow-img.hover {
+    opacity: 1;
+    transform: scale(0.95);
 }
 
 .icons {
