@@ -15,14 +15,14 @@ body {
     justify-content: center;
 }
 
-.title-link {
+.title {
     text-decoration: none;
     color: inherit;
     display: inline-block;
     transition: color 0.45s ease, transform 0.45s ease;
 }
 
-.title-link:hover {
+.title:hover {
     color: #FFE6F5;
     transform: scale(1.01);
 }
