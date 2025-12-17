@@ -56,7 +56,6 @@ h1::after,
 
 .subtitle {
     margin-top: 0.125rem;
-    margin-bottom: 0;
     font-size: 1rem;
     color: #b7bdf5;
     opacity: 0.9;
@@ -72,7 +71,7 @@ h1::after,
     z-index: -1;
 }
 
-.Polka_v2 {
+.polka {
     background-image:
         radial-gradient(#ffffff 3px, transparent 3px),
         radial-gradient(#ffffff 3px, transparent 3px);
