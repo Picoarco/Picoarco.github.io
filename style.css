@@ -267,7 +267,7 @@ h1::after,
     transition: opacity 0.35s ease-in-out;
 }
 
-.thanks-message {
+.message {
     margin-bottom: 3.125rem;
     font-size: 1rem;
     color: #b7bdf5;
