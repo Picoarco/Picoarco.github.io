@@ -62,14 +62,15 @@ h1::after,
 }
 
 .bg_pattern {
-    transform: translateZ(0);
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #FFE6F5;
-    opacity: 0.5;
-    z-index: -1;
+  transform: translateZ(0);
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFE6F5;
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .polka {
@@ -88,6 +89,12 @@ h1::after,
     padding: 2.5rem 1.25rem 1.25rem;
     border-radius: 3.75rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+}
+
+.container,
+footer {
+  position: relative;
+  z-index: 1;
 }
 
 .slider {
