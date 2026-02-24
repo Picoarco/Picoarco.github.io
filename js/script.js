@@ -20,7 +20,7 @@ window.addEventListener("load", () => {
     imgElement.classList.add("show-slider");
 });
 
-const FADE_TIME = 300;
+const FADE_TIME = 350;
 
 function showImage() {
     imgElement.classList.remove("show-slider");

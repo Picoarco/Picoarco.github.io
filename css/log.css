@@ -3,12 +3,8 @@ body {
 }
 
 
-.subtitle,
- {
-  color: #b7bdf5;
-}
-
 .subtitle {
+  color: #b7bdf5;
   opacity: 1;
 }
 
@@ -24,6 +20,8 @@ body {
 }
 
 .log-note {
+  margin: 0px 0 0;
+  line-height: 2.4; 
   color: #b7bdf5;
 }
 
@@ -45,7 +43,7 @@ body {
   color: #b7bdf5;
 }
 
-.entry__body p:last-child {
+.entry-body p:last-child {
   margin-bottom: 0;
 }
 
@@ -72,7 +70,6 @@ body {
   width: 3.2rem;
   height: 3.2rem;
 
-  margin: 0 auto 10px;
   text-decoration: none;
   cursor: pointer;
   margin: 0 auto 24px;
