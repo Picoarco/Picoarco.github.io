@@ -6,16 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picoarco</title>
 
-<link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16.png">
-<link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicons/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicons/favicon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon-180.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
@@ -31,34 +31,33 @@
 
     <div class="slider">
 
-        <button class="arrow left" onclick="prevImage()"  aria-label="Previous image">
-    <span class="arrow-img normal"></span>
-    <span class="arrow-img hover"></span>
-</button>
+        <button class="arrow left" aria-label="Previous image">
+            <span class="arrow-img normal"></span>
+            <span class="arrow-img hover"></span>
+        </button>
 
         <div class="slider-inner" data-nosnippet>
             <img
                 id="slider-img"
                 src="images/top1.webp"
                 alt="slider image"
-                onclick="openModal()"
             >
         </div>
 
-        <button class="arrow right" onclick="nextImage()" aria-label="Next image">
-    <span class="arrow-img normal"></span>
-    <span class="arrow-img hover"></span>
-</button>
+        <button class="arrow right" aria-label="Next image">
+            <span class="arrow-img normal"></span>
+            <span class="arrow-img hover"></span>
+        </button>
 
     </div>
 
-    <div id="modal" class="modal" onclick="closeModal()">
-        <img id="modal-img">
+    <div id="modal" class="modal" aria-hidden="true">
+        <img id="modal-img" alt="">
     </div>
 
     <div class="icons" data-nosnippet>
 
-                <a href="guidelines.html" class="icon-switch">
+        <a href="guidelines.html" class="icon-switch">
             <img class="icon-normal guidelines-icon" src="images/icons/guidelines.webp" alt="guidelines">
             <img class="icon-hover guidelines-icon" src="images/icons/guidelines.webp" alt="guidelines hover">
         </a>
