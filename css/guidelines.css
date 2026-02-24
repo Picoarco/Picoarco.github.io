@@ -22,28 +22,6 @@ body {
   color: #b7bdf5;
 }
 
-.entry {
-  padding: 4px 0;
-  border-top: 2px solid #FFE6F5;
-}
-
-.entry-title {
-  margin: 0 0 4px;
-  font-size: 24px;
-  letter-spacing: 0.02em;
-  color: #939DEA;
-}
-
-.entry-body p {
-  margin: 0 0 6px;
-  line-height: 1.75;
-  color: #b7bdf5;
-}
-
-.entry-body p:last-child {
-  margin-bottom: 0;
-}
-
 .back-line {
   width: 84%;
   height: 0.75rem;
