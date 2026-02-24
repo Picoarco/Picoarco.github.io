@@ -18,6 +18,10 @@ body {
   color: #939DEA;
 }
 
+.guidelines-text {
+  color: #b7bdf5;
+}
+
 .entry {
   padding: 4px 0;
   border-top: 2px solid #FFE6F5;
