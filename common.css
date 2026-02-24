@@ -1,0 +1,139 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0.625rem;
+  padding: 1.25rem 0.625rem;
+  font-family: "Pixelify Sans", sans-serif;
+  background: #FFE6F5;
+  text-align: center;
+
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+  transition: color 0.45s ease, transform 0.45s ease;
+}
+
+.title:hover {
+  color: #FFE6F5;
+  transform: scale(1.01);
+}
+
+h1 {
+  position: relative;
+  margin: 0 0 1rem;
+  padding: 0.625rem 0;
+  font-size: 3rem;
+  color: #939DEA;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 84%;
+  height: 0.75rem;
+  background: repeating-linear-gradient(
+    -45deg,
+    #FFE6F5,
+    #FFE6F5 2px,
+    #fff 2px,
+    #fff 4px
+  );
+  border-radius: 0.1875rem;
+}
+
+.subtitle {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #b7bdf5;
+  opacity: 0.9;
+}
+
+.bg_pattern {
+  transform: translateZ(0);
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #FFE6F5;
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.polka {
+  background-image:
+    radial-gradient(#ffffff 3px, transparent 3px),
+    radial-gradient(#ffffff 3px, transparent 3px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 38.75rem;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 1.25rem;
+  border-radius: 3.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.06);
+  min-height: 36rem;
+}
+
+.container,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
+.message {
+  margin: 0.2rem 0 2.6rem;
+  font-size: 1rem;
+  color: #b7bdf5;
+  opacity: 0.9;
+}
+
+footer {
+  margin-top: 0.625rem;
+  color: #939DEA;
+  font-size: 0.875rem;
+  font-family: sans-serif;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1.5rem 0.625rem;
+    justify-content: flex-start;
+  }
+
+  .container {
+    min-height: auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  body {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 600px) {
+  h1::after {
+    width: 17.5rem;
+  }
+}
