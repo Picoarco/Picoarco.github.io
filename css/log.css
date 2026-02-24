@@ -22,6 +22,7 @@ footer {
   color: #939DEA;
 }
 
+/* Logの説明文（ここが基準） */
 .log__note {
   margin: 8px 0 20px;
   opacity: 1;
@@ -29,21 +30,25 @@ footer {
 }
 
 .entry {
-  padding: 8px 0;
+  padding: 14px 0;
   border-top: 2px solid #FFE6F5;
 }
 
 .entry__title {
-  margin: 0 0 10px;
+  margin: 0 0 4px;
   font-size: 24px;
   letter-spacing: 0.02em;
   color: #939DEA;
 }
 
 .entry__body p {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   line-height: 1.75;
   color: #939DEA;
+}
+
+.entry__body p:last-child {
+  margin-bottom: 0;
 }
 
 .back-line {

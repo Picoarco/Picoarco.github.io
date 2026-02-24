@@ -61,15 +61,14 @@
 .arrow.active .arrow-img.normal { opacity: 0; }
 .arrow.active .arrow-img.hover { opacity: 1; transform: scale(1.1); }
 
-/* icons */
 .icons {
-  margin: 0.875rem auto 1rem;
+  margin: 1.2rem auto 1.75rem;
+  padding-bottom: 2rem; 
   display: flex;
   justify-content: center;
-  gap: 0.8rem;
+  gap: 1rem;
   flex-wrap: wrap;
   position: relative;
-  padding-bottom: 1.5rem;
   transform: translateX(-6px);
 }
 
