@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Picoarco | Log</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/log.css">
+</head>
+
+<body>
+  <div class="bg_pattern polka"></div>
+
+  <div class="container">
+    <h1><a href="index.html" class="title">PICOARCO</a></h1>
+    <small class="subtitle">Indie Game Studio</small>
+
+    <main class="log">
+      <header class="log__header">
+        <h2>Log</h2>
+        <p class="log__note">Dev notes and small updates.</p>
+      </header>
+
+      <article class="entry">
+        <h3 class="entry__title">2026-02-24</h3>
+        <div class="entry__body">
+          <p>Started a text-only log page.</p>
+        </div>
+      </article>
+
+      <article class="entry">
+        <h3 class="entry__title">2025-11-22</h3>
+        <div class="entry__body">
+          <p>Website launched!</p>
+        </div>
+      </article>
+
+      <div class="back-line" aria-hidden="true"></div>
+
+      <a class="back-home" href="index.html" aria-label="Back to home">
+        <span class="back-img normal" aria-hidden="true"></span>
+        <span class="back-img hover" aria-hidden="true"></span>
+        <span class="sr-only">Back</span>
+      </a>
+
+      <script>
+  // ページ表示後にクラスを付けてtransitionを発火
+  requestAnimationFrame(() => {
+    document.body.classList.add("is-ready");
+  });
+</script>
+    </main>
+  </div>
+
+  <footer>© 2026 Picoarco</footer>
+</body>
+</html>
