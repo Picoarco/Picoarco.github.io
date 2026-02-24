@@ -1,4 +1,3 @@
-/* slider */
 .slider {
   position: relative;
   width: 100%;
@@ -62,7 +61,7 @@
 .arrow.active .arrow-img.hover { opacity: 1; transform: scale(1.1); }
 
 .icons {
-  margin: 1.2rem auto 1.75rem;
+  margin: 1rem auto 1.5rem;
   padding-bottom: 2rem; 
   display: flex;
   justify-content: center;
