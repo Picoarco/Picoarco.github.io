@@ -1,10 +1,14 @@
 const images = Array.from({ length: 16 }, (_, i) => `images/top${i + 1}.webp`);
 
 let index = 0;
+let isAnimating = false;
+const FADE_TIME = 350;
 
 const imgElement = document.getElementById("slider-img");
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
+const leftArrow = document.querySelector(".arrow.left");
+const rightArrow = document.querySelector(".arrow.right");
 
 const preloadImages = () => {
     images.forEach(src => {
@@ -14,15 +18,50 @@ const preloadImages = () => {
 };
 preloadImages();
 
-imgElement.classList.add("fade");
+if (imgElement && modal && modalImg) {
+    imgElement.classList.add("fade");
 
-window.addEventListener("load", () => {
-    imgElement.classList.add("show-slider");
-});
+    window.addEventListener("load", () => {
+        imgElement.classList.add("show-slider");
+    });
 
-const FADE_TIME = 350;
+    modal.addEventListener("click", closeModal);
+
+    let startX = 0;
+    let endX = 0;
+
+    imgElement.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+    imgElement.addEventListener("touchend", e => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe(endX - startX);
+    });
+
+    modalImg.addEventListener("touchstart", e => {
+        startX = e.touches[0].clientX;
+    });
+    modalImg.addEventListener("touchend", e => {
+        endX = e.changedTouches[0].clientX;
+        handleSwipe(endX - startX);
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight") {
+            if (rightArrow) flashArrow(rightArrow);
+            nextImage();
+        } else if (e.key === "ArrowLeft") {
+            if (leftArrow) flashArrow(leftArrow);
+            prevImage();
+        }
+    });
+}
+
 
 function showImage() {
+
+    if (!imgElement || !modalImg) return;
+
     imgElement.classList.remove("show-slider");
     modalImg.classList.remove("show-modal");
 
@@ -32,20 +71,29 @@ function showImage() {
 
         imgElement.classList.add("show-slider");
         modalImg.classList.add("show-modal");
+
+        setTimeout(() => {
+            isAnimating = false;
+        }, FADE_TIME);
     }, FADE_TIME);
 }
 
 function nextImage() {
+    if (isAnimating) return;
+    isAnimating = true;
     index = (index + 1) % images.length;
     showImage();
 }
 
 function prevImage() {
+    if (isAnimating) return;
+    isAnimating = true;
     index = (index - 1 + images.length) % images.length;
     showImage();
 }
 
 function openModal() {
+    if (!modal || !modalImg) return;
     modal.classList.add("visible");
     modalImg.src = images[index];
 
@@ -56,38 +104,14 @@ function openModal() {
 }
 
 function closeModal() {
+    if (!modal || !modalImg || !imgElement) return;
     modalImg.classList.remove("show-modal");
 
     setTimeout(() => {
         modal.classList.remove("visible");
-        imgElement.classList.add("show-slider"); // スライダーを正常状態に復元
+        imgElement.classList.add("show-slider"); 
     }, FADE_TIME);
 }
-
-modal.addEventListener("click", closeModal);
-
-const leftArrow = document.querySelector(".arrow.left");
-const rightArrow = document.querySelector(".arrow.right");
-
-function flashArrow(arrowElement) {
-    arrowElement.classList.add("active");
-    setTimeout(() => {
-        arrowElement.classList.remove("active");
-    }, 150);
-}
-
-document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") {
-        flashArrow(rightArrow);
-        nextImage();
-    } else if (e.key === "ArrowLeft") {
-        flashArrow(leftArrow);
-        prevImage();
-    }
-});
-
-let startX = 0;
-let endX = 0;
 
 function handleSwipe(diff) {
     if (Math.abs(diff) > 50) {
@@ -99,18 +123,10 @@ function handleSwipe(diff) {
     }
 }
 
-imgElement.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-});
-imgElement.addEventListener("touchend", e => {
-    endX = e.changedTouches[0].clientX;
-    handleSwipe(endX - startX);
-});
-
-modalImg.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-});
-modalImg.addEventListener("touchend", e => {
-    endX = e.changedTouches[0].clientX;
-    handleSwipe(endX - startX);
-});
+function flashArrow(arrowElement) {
+    if (!arrowElement) return;
+    arrowElement.classList.add("active");
+    setTimeout(() => {
+        arrowElement.classList.remove("active");
+    }, 150);
+}
