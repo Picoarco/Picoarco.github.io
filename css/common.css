@@ -55,21 +55,27 @@ h1::after {
   border-radius: 0.1875rem;
 }
 
-.subtitle {
-  display: block;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+/* shared text style */
+.subtitle,
+.message {
   font-size: 1rem;
   color: #b7bdf5;
   opacity: 0.9;
+}
+
+.subtitle {
+  display: block;
+  margin: 1rem 0;
+}
+
+.message {
+  margin: 0.2rem 0 2.6rem;
 }
 
 .bg_pattern {
   transform: translateZ(0);
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
   background-color: #FFE6F5;
   opacity: 0.5;
   z-index: 0;
@@ -99,13 +105,6 @@ h1::after {
 footer {
   position: relative;
   z-index: 1;
-}
-
-.message {
-  margin: 0.2rem 0 2.6rem;
-  font-size: 1rem;
-  color: #b7bdf5;
-  opacity: 0.9;
 }
 
 footer {
