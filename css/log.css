@@ -13,7 +13,7 @@ footer {
 
 .log {
   text-align: left;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .log-header h2 {
@@ -22,14 +22,8 @@ footer {
   color: #939DEA;
 }
 
-.log-note {
-  margin: 8px 0 20px;
-  opacity: 1;
-  color: #939DEA;
-}
-
 .entry {
-  padding: 14px 0;
+  padding: 4px 0;
   border-top: 2px solid #FFE6F5;
 }
 
@@ -41,7 +35,7 @@ footer {
 }
 
 .entry__body p {
-  margin: 0 0 12px;
+  margin: 0 0 4px;
   line-height: 1.75;
   color: #939DEA;
 }
@@ -53,7 +47,7 @@ footer {
 .back-line {
   width: 84%;
   height: 0.75rem;
-  margin: 18px auto 1rem;
+  margin: 8px auto 1rem;
   background: repeating-linear-gradient(
     -45deg,
     #FFE6F5,
@@ -76,6 +70,7 @@ footer {
   margin: 0 auto 10px;
   text-decoration: none;
   cursor: pointer;
+  margin: 0 auto 24px;
 }
 
 .back-img {
