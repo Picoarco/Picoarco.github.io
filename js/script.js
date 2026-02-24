@@ -1,180 +1,193 @@
-const images = Array.from({ length: 16 }, (_, i) => `images/top${i + 1}.webp`);
+const IMAGES = Array.from({ length: 16 }, (_, i) => `images/top${i + 1}.webp`);
 
-let index = 0;
-let isAnimating = false;
-const FADE_TIME = 350;
+const FADE_MS = 350;
+let currentIndex = 0;
 
-const imgElement = document.getElementById("slider-img");
-const modal = document.getElementById("modal");
-const modalImg = document.getElementById("modal-img");
-const leftArrow = document.querySelector(".arrow.left");
-const rightArrow = document.querySelector(".arrow.right");
+let transitionToken = 0;
 
-// 画像プリロード（そのままでもOKですが、decodeが使える環境では体感改善します）
-preloadImages(images);
-
-if (imgElement && modal && modalImg) {
-  imgElement.classList.add("fade");
-
-  window.addEventListener("load", () => {
-    imgElement.classList.add("show-slider");
-  });
-
-  modal.addEventListener("click", closeModal);
-
-  addSwipeListener(imgElement);
-  addSwipeListener(modalImg);
-
-  document.addEventListener("keydown", function (e) {
-    if (e.key === "ArrowRight") {
-      if (rightArrow) flashArrow(rightArrow);
-      nextImage();
-    } else if (e.key === "ArrowLeft") {
-      if (leftArrow) flashArrow(leftArrow);
-      prevImage();
-    }
-  });
-}
-
-// --------------------
-// ここから下：関数群
-// --------------------
+let sliderImg, modal, modalImg, btnPrev, btnNext;
 
 function preloadImages(list) {
   list.forEach((src) => {
     const img = new Image();
     img.src = src;
-    // decodeは対応ブラウザのみ。失敗しても問題ないので握りつぶします。
-    if (img.decode) img.decode().catch(() => {});
   });
 }
 
-// 次の画像が「使える状態」になったらresolve（onload / decode など）
-function loadOne(src) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    let done = false;
+function forceFadeStyle(imgEl) {
+  imgEl.style.transition = `opacity ${FADE_MS}ms ease-in-out`;
+  imgEl.style.opacity = "1";
+}
 
-    const finish = () => {
-      if (done) return;
-      done = true;
-      resolve();
-    };
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
-    img.onload = finish;
-    img.onerror = finish;
-    img.src = src;
+function clampIndex(i) {
+  const n = IMAGES.length;
+  return (i % n + n) % n;
+}
 
-    if (img.decode) {
-      img.decode().then(finish).catch(() => {});
-    }
+function isModalOpen() {
+  return modal && modal.classList.contains("visible");
+}
+
+function setModalOpen(open) {
+  if (!modal) return;
+
+  if (open) {
+    modal.classList.add("visible");
+    modal.setAttribute("aria-hidden", "false");
+  } else {
+    modal.classList.remove("visible");
+    modal.setAttribute("aria-hidden", "true");
+  }
+}
+
+async function fadeSwap(imgEl, newSrc, token) {
+  if (!imgEl) return;
+
+  imgEl.style.opacity = "0";
+  await wait(FADE_MS);
+
+  // 古い要求なら中断
+  if (token !== transitionToken) return;
+
+  imgEl.src = newSrc;
+
+  if (typeof imgEl.decode === "function") {
+    try { await imgEl.decode(); } catch (_) {}
+  }
+
+  // 古い要求なら中断
+  if (token !== transitionToken) return;
+
+  requestAnimationFrame(() => {
+    if (token !== transitionToken) return;
+    imgEl.style.opacity = "1";
   });
 }
 
-// 連打で白く見える問題の対策：
-// 「消して待つ」ではなく「薄くして、次が読めたら差し替える」
-async function showImage() {
-  if (!imgElement) {
-    isAnimating = false;
-    return;
-  }
+async function showAt(index) {
+  const token = ++transitionToken;
 
-  const nextSrc = images[index];
+  currentIndex = clampIndex(index);
+  const src = IMAGES[currentIndex];
 
-  // 真っ白になりにくいように、完全に消さずに薄くする
-  imgElement.style.opacity = "0.25";
-  if (modal && modal.classList.contains("visible") && modalImg) {
-    modalImg.style.opacity = "0.25";
-  }
+  await fadeSwap(sliderImg, src, token);
 
-  try {
-    await loadOne(nextSrc);
+  if (token !== transitionToken) return;
 
-    // 読めた段階で差し替え
-    imgElement.src = nextSrc;
-
-    if (modal && modal.classList.contains("visible") && modalImg) {
-      modalImg.src = nextSrc;
-    }
-  } finally {
-    // 次のフレームで元に戻す（CSS transitionがあれば自然に戻ります）
-    requestAnimationFrame(() => {
-      imgElement.style.opacity = "";
-      if (modal && modal.classList.contains("visible") && modalImg) {
-        modalImg.style.opacity = "";
-      }
-      isAnimating = false;
-    });
+  if (isModalOpen()) {
+    await fadeSwap(modalImg, src, token);
   }
 }
 
 function nextImage() {
-  if (isAnimating) return;
-  isAnimating = true;
-
-  index = (index + 1) % images.length;
-  showImage();
+  showAt(currentIndex + 1);
 }
 
 function prevImage() {
-  if (isAnimating) return;
-  isAnimating = true;
-
-  index = (index - 1 + images.length) % images.length;
-  showImage();
+  showAt(currentIndex - 1);
 }
 
-function openModal() {
-  if (!modal || !modalImg) return;
+async function openModal() {
+  if (!modalImg) return;
 
-  modal.classList.add("visible");
-  modalImg.src = images[index];
+  const src = (sliderImg && sliderImg.getAttribute("src")) ? sliderImg.getAttribute("src") : IMAGES[currentIndex];
 
-  modalImg.classList.remove("show-modal");
-  setTimeout(() => {
-    modalImg.classList.add("show-modal");
-  }, 10);
+  setModalOpen(true);
+
+  modalImg.style.opacity = "0";
+  modalImg.src = src;
+
+  if (typeof modalImg.decode === "function") {
+    try { await modalImg.decode(); } catch (_) {}
+  }
+
+  requestAnimationFrame(() => {
+    modalImg.style.opacity = "1";
+  });
 }
 
 function closeModal() {
-  if (!modal || !modalImg || !imgElement) return;
+  transitionToken++;
 
-  modalImg.classList.remove("show-modal");
+  if (!modalImg) {
+    setModalOpen(false);
+    return;
+  }
 
-  setTimeout(() => {
-    modal.classList.remove("visible");
-    imgElement.classList.add("show-slider");
-  }, FADE_TIME);
+  modalImg.style.opacity = "0";
+  setModalOpen(false);
 }
 
-function addSwipeListener(el) {
+function flashArrow(el) {
+  if (!el) return;
+  el.classList.add("active");
+  setTimeout(() => el.classList.remove("active"), 150);
+}
+
+function addSwipe(el) {
   let startX = 0;
 
   el.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
-  });
+  }, { passive: true });
 
   el.addEventListener("touchend", (e) => {
     const endX = e.changedTouches[0].clientX;
-    handleSwipe(endX - startX);
+    const diff = endX - startX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff < 0) nextImage();
+      else prevImage();
+    }
+  }, { passive: true });
+}
+
+function init() {
+  sliderImg = document.getElementById("slider-img");
+  modal = document.getElementById("modal");
+  modalImg = document.getElementById("modal-img");
+
+  btnPrev = document.querySelector(".arrow.left");
+  btnNext = document.querySelector(".arrow.right");
+
+  if (!sliderImg || !modal || !modalImg || !btnPrev || !btnNext) return;
+
+  preloadImages(IMAGES);
+
+  forceFadeStyle(sliderImg);
+  forceFadeStyle(modalImg);
+
+  // 初期表示フェード
+  sliderImg.style.opacity = "0";
+  requestAnimationFrame(() => (sliderImg.style.opacity = "1"));
+
+  btnNext.addEventListener("click", () => { flashArrow(btnNext); nextImage(); });
+  btnPrev.addEventListener("click", () => { flashArrow(btnPrev); prevImage(); });
+
+  sliderImg.addEventListener("click", openModal);
+
+  modal.addEventListener("click", closeModal);
+  modalImg.addEventListener("click", (e) => e.stopPropagation());
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { flashArrow(btnNext); nextImage(); }
+    if (e.key === "ArrowLeft")  { flashArrow(btnPrev); prevImage(); }
+    if (e.key === "Escape" && isModalOpen()) closeModal();
   });
+
+  addSwipe(sliderImg);
+  addSwipe(modalImg);
+
+  showAt(0);
+  setModalOpen(false);
 }
 
-function handleSwipe(diff) {
-  if (Math.abs(diff) <= 50) return;
-
-  if (diff < 0) {
-    nextImage();
-  } else {
-    prevImage();
-  }
-}
-
-function flashArrow(arrowElement) {
-  if (!arrowElement) return;
-
-  arrowElement.classList.add("active");
-  setTimeout(() => {
-    arrowElement.classList.remove("active");
-  }, 150);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", init);
+} else {
+  init();
 }

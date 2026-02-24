@@ -112,6 +112,8 @@ footer {
   color: #939DEA;
   font-size: 0.875rem;
   font-family: sans-serif;
+  position: relative;
+  z-index: 0;
 }
 
 @media (max-width: 480px) {
