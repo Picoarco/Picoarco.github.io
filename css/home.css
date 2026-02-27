@@ -19,8 +19,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 3rem;
+  height: 3rem;
   border: none;
   background: none;
   cursor: pointer;
@@ -146,6 +146,10 @@
   opacity: 1;
 }
 
+.steam-icon {
+  transform: translateX(-2px);
+}
+
 .modal {
   position: fixed;
   inset: 0;
@@ -198,11 +202,11 @@
   }
 
   .arrow.left {
-    left: -0.6rem;
+    left: -0.9rem;
   }
 
   .arrow.right {
-    right: -0.6rem;
+    right: -0.9rem;
   }
 }
 
