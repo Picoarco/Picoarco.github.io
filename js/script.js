@@ -50,7 +50,6 @@ async function fadeSwap(imgEl, newSrc, token) {
   imgEl.style.opacity = "0";
   await wait(FADE_MS);
 
-  // 古い要求なら中断
   if (token !== transitionToken) return;
 
   imgEl.src = newSrc;
@@ -59,7 +58,6 @@ async function fadeSwap(imgEl, newSrc, token) {
     try { await imgEl.decode(); } catch (_) {}
   }
 
-  // 古い要求なら中断
   if (token !== transitionToken) return;
 
   requestAnimationFrame(() => {
@@ -161,7 +159,6 @@ function init() {
   forceFadeStyle(sliderImg);
   forceFadeStyle(modalImg);
 
-  // 初期表示フェード
   sliderImg.style.opacity = "0";
   requestAnimationFrame(() => (sliderImg.style.opacity = "1"));
 
