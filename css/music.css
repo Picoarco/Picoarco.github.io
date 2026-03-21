@@ -39,7 +39,7 @@ h1 {
   position: relative;
   margin: 0 0 1rem;
   padding: 0.625rem 0;
-  font-size: 3rem;
+  font-size: 2.7rem;
   color: var(--main-blue);
 }
 
@@ -63,7 +63,7 @@ h1::after {
 
 .subtitle {
   display: block;
-  margin: 1rem 0 0;
+  margin: 1rem 0 0.2rem;
   font-size: 1rem;
   color: var(--sub-blue);
   opacity: 0.9;
@@ -147,7 +147,7 @@ h1::after {
   color: var(--main-blue);
   text-align: center;
   line-height: 1;
-  font-size: 2.875rem;
+  font-size: 1.5rem;
 }
 
 .buttons {
@@ -249,7 +249,7 @@ h1::after {
   height: 0.3rem;
   outline: none;
   border-radius: 999px;
-  background: var(--main-blue);
+  background: #ffe6f5;
 }
 
 .seek_slider {
@@ -292,7 +292,7 @@ h1::after {
 .back-line {
   width: 84%;
   height: 0.75rem;
-  margin: 2rem auto 1.1rem;
+  margin: 1.5rem auto 1.1rem;
   border-radius: 0.1875rem;
   background: repeating-linear-gradient(
     -45deg,
@@ -383,7 +383,7 @@ footer {
   }
 
   .track-name {
-    font-size: 2.375rem;
+    font-size: 1.5rem;
   }
 
   .seek_slider {
