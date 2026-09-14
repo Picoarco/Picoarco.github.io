@@ -51,25 +51,26 @@
 
     </div>
 
-    <div id="modal" class="modal" aria-hidden="true">
+    <dialog id="modal" class="modal" aria-label="Enlarged image">
+        <button id="modal-close" class="modal-close" type="button" aria-label="Close enlarged image">×</button>
         <img id="modal-img" alt="">
-    </div>
+    </dialog>
 
     <div class="icons" data-nosnippet>
 
         <a href="https://store.steampowered.com/" class="icon-switch">
             <img class="icon-normal steam-icon" src="images/icons/steam.webp" alt="steam">
-            <img class="icon-hover steam-icon" src="images/icons/steam2.webp" alt="steam hover">
+            <img class="icon-hover steam-icon" src="images/icons/steam2.webp" alt="" aria-hidden="true">
         </a>
 
         <a href="guidelines.html" class="icon-switch">
             <img class="icon-normal guidelines-icon" src="images/icons/guidelines.webp" alt="guidelines">
-            <img class="icon-hover guidelines-icon" src="images/icons/guidelines2.webp" alt="guidelines hover">
+            <img class="icon-hover guidelines-icon" src="images/icons/guidelines2.webp" alt="" aria-hidden="true">
         </a>
 
         <a href="mailto:studiopicoarco@gmail.com" class="icon-switch">
             <img class="icon-normal mail-icon" src="images/icons/mail.webp" alt="mail">
-            <img class="icon-hover mail-icon" src="images/icons/mail2.webp" alt="mail hover">
+            <img class="icon-hover mail-icon" src="images/icons/mail2.webp" alt="" aria-hidden="true">
         </a>
 
     </div>

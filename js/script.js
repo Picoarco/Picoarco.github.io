@@ -32,7 +32,7 @@ function clampIndex(index) {
 }
 
 function isModalOpen() {
-  return modal.classList.contains("visible");
+  return modal.open;
 }
 
 function invalidateImage(element) {
@@ -77,11 +77,13 @@ function nextImage() { void showAt(currentIndex + 1); }
 function prevImage() { void showAt(currentIndex - 1); }
 
 function openModal() {
+  if (isModalOpen()) return;
   invalidateImage(modalImg);
   modalImg.src = sliderImg.src;
   modalImg.style.opacity = "1";
   modal.classList.add("visible");
-  modal.setAttribute("aria-hidden", "false");
+  modal.showModal();
+  document.getElementById("modal-close").focus();
   // Also synchronize if the modal opens during an existing transition.
   if (currentIndex !== displayedIndex) void showAt(currentIndex);
 }
@@ -91,7 +93,7 @@ function closeModal() {
   invalidateImage(modalImg);
   modalImg.style.opacity = "0";
   modal.classList.remove("visible");
-  modal.setAttribute("aria-hidden", "true");
+  modal.close();
 }
 
 const arrowTimers = new WeakMap();
@@ -138,7 +140,14 @@ function init() {
   btnNext.addEventListener("click", () => { flashArrow(btnNext); nextImage(); });
   btnPrev.addEventListener("click", () => { flashArrow(btnPrev); prevImage(); });
   sliderImg.addEventListener("click", openModal);
-  modal.addEventListener("click", closeModal);
+  document.getElementById("modal-close").addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+  modal.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeModal();
+  });
   modalImg.addEventListener("click", (event) => event.stopPropagation());
   document.addEventListener("keydown", (event) => {
     if (event.key === "ArrowRight") { flashArrow(btnNext); nextImage(); }
