@@ -1,3 +1,7 @@
+:root {
+  --image-fade-ms: 350;
+}
+
 .slider {
   position: relative;
   width: 100%;
@@ -12,7 +16,7 @@
   border-radius: 1.25rem;
   cursor: pointer;
   object-fit: cover;
-  transition: opacity 0.35s ease-in-out;
+  transition: opacity calc(var(--image-fade-ms) * 1ms) ease-in-out;
 }
 
 .arrow {
@@ -177,19 +181,7 @@
   max-height: 90%;
   border-radius: 1.25rem;
   opacity: 0;
-  transition: opacity 0.35s ease-in-out;
-}
-
-.show-modal {
-  opacity: 1;
-}
-
-.fade {
-  opacity: 0;
-}
-
-.show-slider {
-  opacity: 1;
+  transition: opacity calc(var(--image-fade-ms) * 1ms) ease-in-out;
 }
 
 @media (max-width: 479px) {
