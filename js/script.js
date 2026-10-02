@@ -3,7 +3,8 @@ const IMAGES = Array.from({ length: 16 }, (_, i) => `images/top${i + 1}.webp`);
 const FADE_MS = 350;
 let currentIndex = 0;
 
-let transitionToken = 0;
+let modalIndex = 0;
+const transitionTokens = new WeakMap();
 
 let sliderImg, modal, modalImg, btnPrev, btnNext;
 
@@ -50,78 +51,92 @@ async function fadeSwap(imgEl, newSrc, token) {
   imgEl.style.opacity = "0";
   await wait(FADE_MS);
 
-  if (token !== transitionToken) return;
+  if (token !== transitionTokens.get(imgEl)) return;
 
   imgEl.src = newSrc;
 
   if (typeof imgEl.decode === "function") {
-    try { await imgEl.decode(); } catch (_) {}
+    try {
+      await imgEl.decode();
+    } catch (_) {}
   }
 
-  if (token !== transitionToken) return;
+  if (token !== transitionTokens.get(imgEl)) return;
 
   requestAnimationFrame(() => {
-    if (token !== transitionToken) return;
+    if (token !== transitionTokens.get(imgEl)) return;
     imgEl.style.opacity = "1";
   });
 }
 
-async function showAt(index) {
-  const token = ++transitionToken;
-
+function showAt(index) {
   currentIndex = clampIndex(index);
-  const src = IMAGES[currentIndex];
+  const token = (transitionTokens.get(sliderImg) || 0) + 1;
+  transitionTokens.set(sliderImg, token);
+  return fadeSwap(sliderImg, IMAGES[currentIndex], token);
+}
 
-  await fadeSwap(sliderImg, src, token);
-
-  if (token !== transitionToken) return;
-
-  if (isModalOpen()) {
-    await fadeSwap(modalImg, src, token);
-  }
+function showModalAt(index) {
+  modalIndex = clampIndex(index);
+  const token = (transitionTokens.get(modalImg) || 0) + 1;
+  transitionTokens.set(modalImg, token);
+  return fadeSwap(modalImg, IMAGES[modalIndex], token);
 }
 
 function nextImage() {
-  showAt(currentIndex + 1);
+  if (isModalOpen()) return showModalAt(modalIndex + 1);
+  return showAt(currentIndex + 1);
 }
 
 function prevImage() {
-  showAt(currentIndex - 1);
+  if (isModalOpen()) return showModalAt(modalIndex - 1);
+  return showAt(currentIndex - 1);
 }
 
 async function openModal() {
   if (!modalImg) return;
 
-  const src = (sliderImg && sliderImg.getAttribute("src")) ? sliderImg.getAttribute("src") : IMAGES[currentIndex];
+  const src =
+    (sliderImg && sliderImg.getAttribute("src")) || IMAGES[currentIndex];
+
+  const displayedIndex = IMAGES.indexOf(src);
+  modalIndex = displayedIndex >= 0 ? displayedIndex : currentIndex;
+
+  const token = (transitionTokens.get(modalImg) || 0) + 1;
+  transitionTokens.set(modalImg, token);
 
   setModalOpen(true);
-
   modalImg.style.opacity = "0";
   modalImg.src = src;
 
   if (typeof modalImg.decode === "function") {
-    try { await modalImg.decode(); } catch (_) {}
+    try {
+      await modalImg.decode();
+    } catch (_) {}
   }
 
   requestAnimationFrame(() => {
-    modalImg.style.opacity = "1";
+    if (token === transitionTokens.get(modalImg) && isModalOpen()) {
+      modalImg.style.opacity = "1";
+    }
   });
 }
 
 function closeModal() {
-  transitionToken++;
-
-  if (!modalImg) {
-    setModalOpen(false);
-    return;
+  if (modalImg) {
+    transitionTokens.set(
+      modalImg,
+      (transitionTokens.get(modalImg) || 0) + 1
+    );
+    modalImg.style.opacity = "0";
   }
 
-  modalImg.style.opacity = "0";
   setModalOpen(false);
 }
 
 function flashArrow(el) {
   if (!el) return;
+
   el.classList.add("active");
   setTimeout(() => el.classList.remove("active"), 150);
 }
@@ -129,19 +144,27 @@ function flashArrow(el) {
 function addSwipe(el) {
   let startX = 0;
 
-  el.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
+  el.addEventListener(
+    "touchstart",
+    (e) => {
+      startX = e.touches[0].clientX;
+    },
+    { passive: true }
+  );
 
-  el.addEventListener("touchend", (e) => {
-    const endX = e.changedTouches[0].clientX;
-    const diff = endX - startX;
+  el.addEventListener(
+    "touchend",
+    (e) => {
+      const endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
 
-    if (Math.abs(diff) > 50) {
-      if (diff < 0) nextImage();
-      else prevImage();
-    }
-  }, { passive: true });
+      if (Math.abs(diff) > 50) {
+        if (diff < 0) nextImage();
+        else prevImage();
+      }
+    },
+    { passive: true }
+  );
 }
 
 function init() {
@@ -162,8 +185,15 @@ function init() {
   sliderImg.style.opacity = "0";
   requestAnimationFrame(() => (sliderImg.style.opacity = "1"));
 
-  btnNext.addEventListener("click", () => { flashArrow(btnNext); nextImage(); });
-  btnPrev.addEventListener("click", () => { flashArrow(btnPrev); prevImage(); });
+  btnNext.addEventListener("click", () => {
+    flashArrow(btnNext);
+    nextImage();
+  });
+
+  btnPrev.addEventListener("click", () => {
+    flashArrow(btnPrev);
+    prevImage();
+  });
 
   sliderImg.addEventListener("click", openModal);
 
@@ -171,9 +201,19 @@ function init() {
   modalImg.addEventListener("click", (e) => e.stopPropagation());
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") { flashArrow(btnNext); nextImage(); }
-    if (e.key === "ArrowLeft")  { flashArrow(btnPrev); prevImage(); }
-    if (e.key === "Escape" && isModalOpen()) closeModal();
+    if (e.key === "ArrowRight") {
+      if (!isModalOpen()) flashArrow(btnNext);
+      nextImage();
+    }
+
+    if (e.key === "ArrowLeft") {
+      if (!isModalOpen()) flashArrow(btnPrev);
+      prevImage();
+    }
+
+    if (e.key === "Escape" && isModalOpen()) {
+      closeModal();
+    }
   });
 
   addSwipe(sliderImg);

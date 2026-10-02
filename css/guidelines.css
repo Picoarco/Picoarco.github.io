@@ -17,6 +17,41 @@ body {
   color: #939DEA;
 }
 
+.guidelines-body {
+  height: 17rem;
+  height: clamp(12rem, 38.5svh, 17rem);
+  margin-top: 1rem;
+  padding: 0 1rem 0 0.25rem;
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+  scrollbar-width: auto;
+  scrollbar-color: #939DEA #FFE6F5;
+  overscroll-behavior-y: contain;
+}
+
+.guidelines-body::-webkit-scrollbar {
+  width: 10px;
+}
+
+.guidelines-body::-webkit-scrollbar-track {
+  background: #FFE6F5;
+  border-radius: 5px;
+}
+
+.guidelines-body::-webkit-scrollbar-thumb {
+  background: #939DEA;
+  border-radius: 5px;
+}
+
+.guidelines-body:focus-visible {
+  outline: 2px solid #939DEA;
+  outline-offset: 4px;
+}
+
+.guidelines-body .guidelines-text:first-child {
+  margin-top: 0;
+}
+
 .guidelines-text {
   color: #b7bdf5;
 }
